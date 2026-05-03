@@ -44,6 +44,7 @@ func migrate() error {
 			host        TEXT    NOT NULL,
 			port        TEXT,
 			sources     TEXT    NOT NULL DEFAULT '[]',
+			tags        TEXT    NOT NULL DEFAULT '[]',
 			status      TEXT,
 			status_code INTEGER,
 			title       TEXT,
@@ -66,5 +67,7 @@ func migrate() error {
 			return fmt.Errorf("migrate: %w (sql=%s)", err, s)
 		}
 	}
+	// 兼容旧库：如果 tags 列不存在则添加
+	conn.Exec("ALTER TABLE assets ADD COLUMN tags TEXT NOT NULL DEFAULT '[]'")
 	return nil
 }

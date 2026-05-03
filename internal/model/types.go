@@ -19,6 +19,7 @@ type Asset struct {
 	Host       string   `json:"host"`
 	Port       string   `json:"port"`
 	Sources    []string `json:"sources"`
+	Tags       []string `json:"tags"`        // 用户自定义标签
 	Status     string   `json:"status"`      // "alive" | "dead" | ""
 	StatusCode *int     `json:"status_code"`
 	Title      string   `json:"title"`

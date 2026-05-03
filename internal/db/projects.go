@@ -52,6 +52,9 @@ func ListProjects(search string) ([]model.Project, error) {
 		p.AliveCount = int(alive.Int64)
 		result = append(result, p)
 	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
 	return result, nil
 }
 
